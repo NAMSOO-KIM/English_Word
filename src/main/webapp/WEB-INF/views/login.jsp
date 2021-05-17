@@ -49,7 +49,7 @@ i {
 
 #imail {
 	position: absolute;
-	top: 130px;
+	top: 115px;
 	margin: 0 355px;
 }
 
@@ -57,7 +57,7 @@ i {
 
 #ipw {
 	position: absolute;
-	top: 180px;
+	top: 165px;
 	margin: 0 355px;
 }
 

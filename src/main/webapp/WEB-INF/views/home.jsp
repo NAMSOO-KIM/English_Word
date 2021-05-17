@@ -152,7 +152,7 @@ p {
         
       </div>
       <div class="bg2">
-        <h2>마이 페이지</span></h2>
+        <h2 onclick="location.href='logout'">로그아웃</span></h2>
         
       </div>
       <div class="bg2">

@@ -17,9 +17,6 @@ public class CrawlerDAOImpl implements CrawlerDAO {
 	@Autowired
 	private DataSource dataSource;
 	
-	
-	//private static final CrawlerDAO crawlerDAO = new CrawlerDAOImpl();
-	
 	private CrawlerDAOImpl() {
 		try {
 			Context ctx = new InitialContext();

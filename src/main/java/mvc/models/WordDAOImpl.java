@@ -21,7 +21,6 @@ public class WordDAOImpl implements WordDAO {
 	private DataSource dataSource;
 	
 	
-	//private static final WordDAO wordDAO = new WordDAOImpl();
 	private WordDAOImpl() {
 		try {
 			Context ctx = new InitialContext();
@@ -53,10 +52,7 @@ public class WordDAOImpl implements WordDAO {
 
 	@Override
 	public int insertWord(String user_id, WordDTO wordDTO) throws SQLException{
-		System.out.println(user_id);
-		System.out.println(wordDTO.getId());
-		System.out.println(wordDTO.getQuestion());
-		System.out.println(wordDTO.getAnswer());
+		
 		
 		// TODO Auto-generated method stub
 		StringBuffer sql = new StringBuffer();
@@ -72,7 +68,6 @@ public class WordDAOImpl implements WordDAO {
 				ps.setString(3, wordDTO.getQuestion());
 				ps.setString(4, wordDTO.getAnswer());
 				ps.executeUpdate();
-				System.out.println("WordDAOImple insert 성공");
 				return 1;
 			}
 		catch (Exception e) {
@@ -97,9 +92,6 @@ public class WordDAOImpl implements WordDAO {
 			pstmt.executeUpdate();
 			
 			
-			System.out.println(word_id);
-			
-			System.out.println("단어 삭제");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -140,11 +132,7 @@ public class WordDAOImpl implements WordDAO {
 	@Override
 	public List<WordDTO> getWordList() throws SQLException {
 		StringBuffer sql = new StringBuffer();
-		/*
-		sql.append("select w.english , w.answer, w.regdate, m.name ");
-		sql.append("FROM member m ");
-		sql.append("INNER JOIN word w on w.member_id = m.id; ");
-		*/
+
 	
 		sql.append("select id, question, answer ");
 		sql.append("FROM word ");
@@ -171,12 +159,7 @@ public class WordDAOImpl implements WordDAO {
 	@Override
 	public List<MyWordDTO> getWordList(String user_id) throws SQLException {
 		StringBuffer sql = new StringBuffer();
-		/*
-		sql.append("select w.english , w.answer, w.regdate, m.name ");
-		sql.append("FROM member m ");
-		sql.append("INNER JOIN word w on w.member_id = m.id; ");
-		*/
-	
+
 		sql.append("select id, question, answer ");
 		sql.append("FROM my_word ");
 		sql.append("where member_id = ? ");
@@ -191,7 +174,6 @@ public class WordDAOImpl implements WordDAO {
 			try (ResultSet rs = ps.executeQuery()) {
 				while(rs.next()) {
 					
-					//WordDTO wordDTO = new WordDTO();
 					MyWordDTO mywordDTO = new MyWordDTO();
 					mywordDTO.setId(rs.getLong("id"));
 					mywordDTO.setQuestion(rs.getString("question"));
@@ -209,7 +191,7 @@ public class WordDAOImpl implements WordDAO {
 	// 단어 수정
 	@Override
 	public int updateWord(WordDTO wordDTO) throws SQLException {
-		// TODO Auto-generated method stub
+
 		return 0;
 		
 	}
@@ -217,8 +199,7 @@ public class WordDAOImpl implements WordDAO {
 	// 단어 삭제
 	@Override
 	public int deleteWord(WordDTO wordDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+
 		
 		StringBuffer sql = new StringBuffer();
 		sql.append("DELETE t_board  ");
@@ -227,8 +208,7 @@ public class WordDAOImpl implements WordDAO {
 		
 		try (Connection conn = dataSource.getConnection();
 			 PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
-			//to-do
-			//pstmt.setLong(1, wordDTO.getId());
+			
 			return pstmt.executeUpdate();
 		
 		}
@@ -243,8 +223,7 @@ public class WordDAOImpl implements WordDAO {
 		
 		try (Connection conn = dataSource.getConnection();
 			 PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
-			//to-do
-			//pstmt.setLong(1, wordDTO.getId());
+
 			return pstmt.executeUpdate();
 		
 		}

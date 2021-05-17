@@ -17,12 +17,10 @@ import mvc.models.WordDTO;
 
 @Service
 public class CrawlerServiceImpl implements CrawlerService {
-	
-	
-	//private static final CrawlerService crawlerService = new CrawlerServiceImpl();
+
 	@Autowired
 	private CrawlerDAO crawlerDAO;
-	//private CrawlerDAO crawlerDAO = CrawlerDAOImpl.getInstance();
+
 	
 	
 	@Override

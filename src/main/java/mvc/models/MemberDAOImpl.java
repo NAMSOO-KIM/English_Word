@@ -23,26 +23,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	//private static final MemberDAO memberDAO = new MemberDAOImpl();
-	/*
-	private MemberDAOImpl() {
-		try {
-			Context ctx = new InitialContext();
-			dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/MyWordWeb");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	
-	public static MemberDAO getInstance() {
-		return memberDAO;
-	}
-	*/
-	
-	
-	// �궗�슜 �븞�븿
 	@Override
 	public List<MemberDTO> getMemberList() throws SQLException {
 		StringBuffer sql = new StringBuffer();
@@ -71,7 +53,6 @@ public class MemberDAOImpl implements MemberDAO {
 		return list;
 	}
 
-	//�쉶�썝�벑濡�
 	@Override
 	public void insertMember(MemberDTO memberDTO) throws SQLException {
 		
@@ -85,13 +66,12 @@ public class MemberDAOImpl implements MemberDAO {
 				memberDTO.getName()
 		};
 		jdbcTemplate.update(sql.toString(),args);
-		System.out.println("memberdao 에서 insert 성공");
+		
 	}
 
 	@Override
 	public int loginMember(MemberDTO memberDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+
 		String runP = "{ call member_login(?, ?, ?) }";
 		
 		try (Connection conn = dataSource.getConnection();
@@ -105,13 +85,13 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			int check = callableStatement.getInt(3);
 			if(check == 0) {
-				System.out.println("濡쒓렇�씤 �떎�뙣");
+				
 				return 0;
 				
 			}
 			else {
 				
-				System.out.println("濡쒓렇�씤 �꽦怨�");
+				
 				return 1;
 				
 			}

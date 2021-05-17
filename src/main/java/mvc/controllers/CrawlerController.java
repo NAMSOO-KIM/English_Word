@@ -15,15 +15,6 @@ import mvc.fx.ModelAndView;
 import mvc.service.CrawlerService;
 
 
-
-/*
-	
-	/myword/crawler=mvc.controllers.crawler
-	
-
- */
-
-
 @Controller
 public class CrawlerController {
 	
@@ -51,18 +42,15 @@ public class CrawlerController {
 
 			mav.setViewName("home");
 			response.sendRedirect(mav.getViewName());
-			//mav.setViewName("redirect:home");
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 
-			//mav.addObject("msg", "왜 안되지?");
-			//mav.addObject("url", "javascript:history.back();");
+			
 		}
 		
-		//mav.setViewName("redirect:home");
-			
-		//return mav;
+		
 		return null;
 	}
 }
