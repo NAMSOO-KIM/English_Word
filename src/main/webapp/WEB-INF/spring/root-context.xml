@@ -24,6 +24,7 @@
 		class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
 	
+	<!-- 
 	<bean
 		id="memberSqlSession" class="org.mybatis.spring.SqlSessionFactoryBean" 
 		p:dataSource-ref="dataSource"
@@ -35,9 +36,9 @@
 		id="memberDAO" 
 		class="org.mybatis.spring.mapper.MapperFactoryBean" 
 		p:sqlSessionFactory-ref="memberSqlSession"
-		p:mapperInterface="mvc.models.ArticleDAO"
+		p:mapperInterface="mvc.models.MemberDAO"
 		/>
-	
+	 -->
 	
 	
 		

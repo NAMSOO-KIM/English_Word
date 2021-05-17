@@ -14,7 +14,7 @@
 <body>
 
 <%
-	response.sendRedirect("myword/register");
+	response.sendRedirect("login");
 
 %>
 </body>

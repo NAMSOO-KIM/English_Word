@@ -84,7 +84,8 @@ public class MemberDAOImpl implements MemberDAO {
 				memberDTO.getPassword(),
 				memberDTO.getName()
 		};
-		jdbcTemplate.update(sql.toString(),args);		
+		jdbcTemplate.update(sql.toString(),args);
+		System.out.println("memberdao 에서 insert 성공");
 	}
 
 	@Override

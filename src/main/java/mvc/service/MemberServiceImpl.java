@@ -4,7 +4,6 @@ package mvc.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import mvc.models.MemberDAO;
@@ -14,7 +13,6 @@ import mvc.models.MemberDTO;
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
-	@Qualifier(value="memberDAO")
 	private MemberDAO memberDAO;
 	
 	@Override

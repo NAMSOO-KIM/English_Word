@@ -37,7 +37,7 @@
      
     <div class="col-sm-6">
     <h2>회원가입</h2>
-    <form action="registerAction" method="post" onsubmit="return validate()">
+    <form action="register" method="post" onsubmit="return validate()">
         <table class="table table-boardered">
             <tr>
                 <th>아이디</th>

@@ -24,7 +24,11 @@
 	</beans:bean>
 	
 	<!-- <context:component-scan base-package="net.developia.mvc" /> -->
-	<context:component-scan base-package="mvc.controllers" />
+	<context:component-scan base-package="mvc" />
+	<!-- net.developia.mvc -->
+	<!-- net.developia.mvc.controllers -->
+	<!-- net.developia.mvc.models -->
+	<!-- net.developia.mvc.services -->
 	
 	
 	

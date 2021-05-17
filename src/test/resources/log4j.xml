@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="net.developia.mvc">
+	<logger name="mvc">
 		<level value="info" />
 	</logger>
 	
