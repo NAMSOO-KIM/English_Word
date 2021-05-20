@@ -30,7 +30,7 @@ public class CrawlerController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 			
 			Calendar cal = Calendar.getInstance();
-			for(int i=1; i<=300; i++) {
+			for(int i=1; i<=200; i++) {
 				
 				cal.add(Calendar.DATE, -1);
 
