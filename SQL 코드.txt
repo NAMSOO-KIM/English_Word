@@ -1,0 +1,132 @@
+DROP TABLE MEMBER CASCADE CONSTRAINTS;
+DROP TABLE WORD CASCADE CONSTRAINTS;
+DROP TABLE MY_WORD CASCADE CONSTRAINTS;
+
+
+drop sequence SEQ_MEMBER;
+drop sequence SEQ_WORD;
+drop sequence SEQ_MY_WORD;
+
+
+CREATE SEQUENCE SEQ_MEMBER
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 999999
+MINVALUE 1;
+
+CREATE TABLE MEMBER (
+    id                      NUMBER(9) NOT NULL,
+    user_id                   VARCHAR2(20 CHAR) NOT NULL,
+    password	       VARCHAR2(20 CHAR) NOT NULL,
+    name                    VARCHAR2(20 CHAR) NOT NULL, 
+    answer_cnt	      NUMBER(9) DEFAULT 0 NOT NULL
+);
+
+ALTER TABLE MEMBER
+ADD CONSTRAINT member_id_pk PRIMARY KEY(id);
+
+ALTER TABLE member
+ADD CONSTRAINT user_id_uk UNIQUE(user_id);
+
+
+CREATE SEQUENCE SEQ_WORD
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 999999
+MINVALUE 1;
+
+CREATE TABLE WORD(
+    id                      NUMBER(9) NOT NULL,
+    member_id            VARCHAR2(20 CHAR) NOT NULL,
+    question                VARCHAR2(4000) NOT NULL,
+    answer                       VARCHAR2(4000) NOT NULL
+);
+
+
+ALTER TABLE WORD
+ADD CONSTRAINT word_id_pk PRIMARY KEY(id);
+
+ALTER TABLE WORD
+ADD CONSTRAINT member_id_fk FOREIGN KEY(member_id)
+REFERENCES member(user_id);
+
+------------MY_WORD
+
+CREATE SEQUENCE SEQ_MY_WORD
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 999999
+MINVALUE 1;
+
+CREATE TABLE MY_WORD(
+    id                      NUMBER(9) NOT NULL,
+    member_id	    VARCHAR2(20 CHAR) NOT NULL,
+    word_id              NUMBER(9) NOT NULL,
+    question                VARCHAR2(4000) NOT NULL,
+    answer                VARCHAR2(4000) NOT NULL
+);
+
+
+
+ALTER TABLE MY_WORD
+ADD CONSTRAINT my_member_id_fk FOREIGN KEY(member_id)
+REFERENCES member(user_id);
+
+ALTER TABLE MY_WORD
+ADD CONSTRAINT my_word_id_fk FOREIGN KEY(word_id)
+REFERENCES word(id);
+
+ALTER TABLE MY_WORD
+ADD CONSTRAINT my_word_id_pk PRIMARY KEY(id);
+
+
+--- 맞은 단어 틀린단어는 id, member_id , word_id 와 합쳐서 하나의 키가 됨
+
+
+
+
+---프로시저
+
+---로그인
+CREATE OR REPLACE PROCEDURE member_login_check
+(
+  m_user_id IN member.user_id%TYPE,
+  m_password IN member.password%TYPE,
+  R OUT NUMBER
+)
+IS
+BEGIN
+  SELECT COUNT(*) INTO R
+  FROM member
+  WHERE user_id = m_user_id AND password = m_password ;
+
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE member_login
+(
+    
+	user_id IN member.user_id%TYPE,
+	password IN member.password%TYPE,
+    possible OUT NUMBER
+)
+IS
+  MR NUMBER;
+BEGIN
+  -- 중복체크
+  member_login_check(user_id,password, MR);
+  IF MR = 0 THEN
+	
+    possible := 0 ; -- 0이면 등록된 아이디가 없거나 비밀번호가 틀렸습니다.
+	
+  ELSE
+  
+    possible := 1 ; -- 1이면 로그인 성공
+	
+  END IF;
+  DBMS_OUTPUT.PUT_LINE(TO_CHAR(MR));
+END ;
+/
+
+

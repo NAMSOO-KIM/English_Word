@@ -83,6 +83,7 @@ input {
             <input type="text" placeholder="아이디" name="user_id" required style="height:30px; width: 380px" /><br />
             <input type="password" placeholder="비밀번호" name="password" required style="height:30px; width: 380px" /><br />
             <input type="submit" value="로그인" class="login" />
+            
            
             <!-- <button onclick="location.href='home.do';" class="login" >HOME</button> -->
         </form>
